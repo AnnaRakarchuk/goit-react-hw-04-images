@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { fetchImages } from 'servises/api';
-import {Searchbar} from './Searchbar/Searchbar';
+import Searchbar from './Searchbar/Searchbar';
 import { ImageGallery } from './ImageGallery/ImageGallery';
 import { Loader } from './Loader/Loader';
 import { LoadMore } from './Button/Button';
@@ -43,9 +43,9 @@ setIsLoading(false);
     setImages([]);
   };
 
-  const handleLoadMore = () => {
-    setPage(1);
-  };
+  // const handleLoadMore = () => {
+  //   setPage( page + 1);
+  // };
 
   const onModalOpen = largeImageURL => {
     toggleModal();
@@ -59,21 +59,20 @@ setIsLoading(false);
   return (
     <>
       <Searchbar onSubmit={onSubmitHandler} />
-      
       {error && toast.error(`Oops something went wrong. ${error.message}`)}
       {images.length > 0 && (
         <ImageGallery images={images} openModal={onModalOpen} />
       )}
-      {isLoading && (
-        <LoadMore onLoadMore={handleLoadMore} />
-      )}
-       {showModal && (
-        <Modal
-          onModalClose={toggleModal}
-          largeImageUrl={largeImageURL}
-        />
-      )}
-      {isLoading && <Loader />}
+        {!showModal && (
+         <Modal
+           onModalClose={toggleModal}
+           largeImageUrl={largeImageURL}
+         />
+       )}
+        {isLoading && <Loader />}
+      {images.length > 11 && 
+        <LoadMore onClick={() => setPage(page + 1)} />
+        }
       <ToastContainer autoClose={3000} theme={'colored'} />
     </>
   );

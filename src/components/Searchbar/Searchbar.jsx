@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 import css from '../Searchbar/Searchbar.module.css';
 
-export const Searchbar = ({ submitFormHandler }) => {
+ const Searchbar = ({ onSubmit }) => {
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleChange = e => {
@@ -14,7 +14,8 @@ export const Searchbar = ({ submitFormHandler }) => {
     if (searchQuery.trim() === '') {
       return toast.warn('Input value can not be empty');
     }
-    submitFormHandler(searchQuery);
+    onSubmit(searchQuery);
+    setSearchQuery('');
     e.target.reset();
   };
 
@@ -39,3 +40,5 @@ export const Searchbar = ({ submitFormHandler }) => {
     </header>
   );
 };
+
+export default Searchbar;
