@@ -8,7 +8,7 @@ export const ImageGallery = ({ images, openModal }) => {
     <ul className={css.ImageGallery}>
       {images.map(({ id, webformatURL, largeImageURL }) => (
         <ImageGalleryItem
-          id={id}
+          key={id}
           webformatURL={webformatURL}
           largeImageURL={largeImageURL}
           openModal={openModal}
@@ -22,7 +22,7 @@ ImageGallery.propTypes = {
   openModal: PropTypes.func.isRequired,
   images: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
+      key: PropTypes.number.isRequired,
       webformatURL: PropTypes.string.isRequired,
       largeImageURL: PropTypes.string.isRequired,
     })

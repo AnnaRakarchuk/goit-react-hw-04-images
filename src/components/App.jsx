@@ -43,10 +43,6 @@ setIsLoading(false);
     setImages([]);
   };
 
-  // const handleLoadMore = () => {
-  //   setPage( page + 1);
-  // };
-
   const onModalOpen = largeImageURL => {
     toggleModal();
     setLargeImageURL(largeImageURL);
@@ -63,7 +59,7 @@ setIsLoading(false);
       {images.length > 0 && (
         <ImageGallery images={images} openModal={onModalOpen} />
       )}
-        {!showModal && (
+        {showModal && (
          <Modal
            onModalClose={toggleModal}
            largeImageUrl={largeImageURL}
