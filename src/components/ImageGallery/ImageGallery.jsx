@@ -6,11 +6,11 @@ import css from '../ImageGallery/ImageGallery.module.css';
 export const ImageGallery = ({ images, openModal }) => {
   return (
     <ul className={css.ImageGallery}>
-      {images.map(({ id, webformatURL, largeImageURL }) => (
+      {images.map(image => (
         <ImageGalleryItem
-          key={id}
-          webformatURL={webformatURL}
-          largeImageURL={largeImageURL}
+          key={image.id}
+          webformatURL={image.webformatURL}
+          largeImageURL={image.largeImageURL}
           openModal={openModal}
         />
       ))}
@@ -22,7 +22,7 @@ ImageGallery.propTypes = {
   openModal: PropTypes.func.isRequired,
   images: PropTypes.arrayOf(
     PropTypes.shape({
-      key: PropTypes.number.isRequired,
+      id: PropTypes.number.isRequired,
       webformatURL: PropTypes.string.isRequired,
       largeImageURL: PropTypes.string.isRequired,
     })
